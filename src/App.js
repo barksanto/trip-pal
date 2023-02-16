@@ -7,19 +7,18 @@ import { CssBaseline, Grid } from "@material-ui/core"
 import { getPlacesData } from "./API"
 import { useEffect, useState } from "react"
 
-
 const App = () => {
   const [places, setPlaces] = useState([])
+  const [coordinates, setCoordinates] = useState({})
+  const [bounds, setBounds] = useState(null)
+  // console.log(coordinates)
 
-  useEffect(() => { 
-    getPlacesData()
-      .then((data) => {
-        console.log(data)
-        setPlaces(data)
+  useEffect(() => {
+    getPlacesData().then((data) => {
+      // console.log(data)
+      setPlaces(data)
     })
   }, [])
-
-
 
   return (
     <>
@@ -31,7 +30,12 @@ const App = () => {
           <List />
         </Grid>
         <Grid item xs={12} md={8}>
-          <Map />
+          <Map
+            // props below to pass to Maps component
+            setCoordinates={setCoordinates}
+            setBounds={setBounds}
+            coordinates={coordinates}
+          />
         </Grid>
       </Grid>
 

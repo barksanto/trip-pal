@@ -6,10 +6,12 @@ import { LocationOnOutlinedIcon } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab'; // still  being worked on, so importing lab instead of core
 import useStyles from './styles';
 
-const Map = () => { 
+const Map = ({setCoordinates, setBounds}) => { 
   const classes = useStyles();
   const isMobile = useMediaQuery('(min-width: 600px)'); // set to false if screen is less than 600px
-  const coordinates = { lat: 0, lng: 0 };
+  const coordinates = { lat: 12.248278039408776, lng: 109.1981618106365 }; // this is the default coordinates - used for testing, but now we have coordinates as a prop
+
+  // "latitude":12.248278039408776,"longitude":109.1981618106365
 
   return (
     <div className={classes.mapContainer}>
@@ -19,11 +21,15 @@ const Map = () => {
         center={coordinates}
         defaultZoom={14}
         options={''}
-        onChange={''}
-        onChildClick={''}
+        onChange={(e) => {
+          console.log(e)
+          setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+        }}
+        // onChildClick={''}
 
       >
-        {/*  this is where we will put our markers */}
+        {/*  this is where the markers will go */}
       </GoogleMapReact>
     </div>
   )
