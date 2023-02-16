@@ -17,7 +17,7 @@ const Header = () => {
           Adventure Advisor
         </Typography>
         {/* Box effectively works as a div - properties can be flex etc.. */}
-        <Box>
+        <Box display="flex">
           <Typography variant="h6" className={classes.title}>
             Explore new places
           </Typography >
@@ -26,7 +26,7 @@ const Header = () => {
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <InputBase placeholder='Search...' className={{root: classes.InputRoot, input: classes.inputInput}} />
+              <InputBase placeholder='Search...' classes={{root: classes.InputRoot, input: classes.inputInput}} />
             </div>
           {/* </Autocomplete> */}
         </Box>
