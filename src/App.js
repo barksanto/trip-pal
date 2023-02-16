@@ -15,7 +15,7 @@ const App = () => {
           {/*This grid takes full width on mobile, md&lg only 4 spaces (out of 12) */}
           <List />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={8}>
           <Map />
         </Grid>
       </Grid>
