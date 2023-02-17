@@ -9,16 +9,25 @@ import { useEffect, useState } from "react"
 
 const App = () => {
   const [places, setPlaces] = useState([])
-  const [coordinates, setCoordinates] = useState({lat: 0, lng: 0})
+  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 })
   const [bounds, setBounds] = useState(null)
   // console.log(coordinates)
 
   useEffect(() => {
-    console.log(coordinates, bounds)
-    getPlacesData().then((data) => {
+    getPlacesData(bounds).then((data) => {
       // console.log(data)
       setPlaces(data)
     })
+  }, [coordinates, bounds])
+
+  // # useEffect for user location
+  useEffect(() => {
+    // @ useEffect for user location - destructuring coords from browser api
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoordinates({ lat: latitude, lng: longitude })
+      }
+    )
   }, [])
 
   return (

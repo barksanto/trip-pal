@@ -6,7 +6,11 @@ import { LocationOnOutlinedIcon } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab'; // still  being worked on, so importing lab instead of core
 import useStyles from './styles';
 
-const Map = ({setCoordinates, setBounds, coordinates}) => { 
+
+
+const Map = ({ setCoordinates, setBounds, coordinates }) => { 
+
+
   const classes = useStyles();
   const isMobile = useMediaQuery('(min-width: 600px)'); // set to false if screen is less than 600px
 
@@ -18,7 +22,7 @@ const Map = ({setCoordinates, setBounds, coordinates}) => {
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyB16p5MQIwgEVZwAQwkJHzM_DRerIIJ85k' }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_KEY }}
         // defaultCenter={coordinates} // @ this is the default coordinates to start with - deleted because we are using the coordinates from the parent component 
         center={coordinates}
         defaultZoom={14}
